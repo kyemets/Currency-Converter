@@ -1,3 +1,3 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite + Tailwind CSS
 
 # Currency Converter
