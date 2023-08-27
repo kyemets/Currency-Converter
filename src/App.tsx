@@ -9,6 +9,7 @@ function App() {
     const [value, setValue] = useState(1 );
     const [currencyEUR, setCurrencyEUR] = useState(0);
     const [resultValue, setResultValue] = useState(0);
+    const [exchangeDate, setExchangeDate] = useState('')
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = Number(event.currentTarget.value);
@@ -25,6 +26,7 @@ function App() {
             const valueEUR = data.find((el: { r030: number; }) => el.r030 === 978);
 
             setCurrencyEUR(valueEUR.rate);
+            setExchangeDate(valueEUR.exchangedate);
         } catch (e) {
             console.log(e);
         }
@@ -47,12 +49,12 @@ function App() {
                             <ReactFlagsSelect
                                 selected={selected}
                                 onSelect={(code) => setSelected(code)}
-                                countries={["US", "GB", "FR", "DE", "IT", "SK", "UA"]}
-                                customLabels={{ US: "EN-US", GB: "EN-GB", FR: "FR", DE: "DE", IT: "IT", SK: "EUR", UA: "UAH" }}
+                                countries={["US", "SK", "UA"]}
+                                customLabels={{ US: "EN-US", SK: "EUR", UA: "UAH" }}
                                 placeholder="Select currency"
                             />
                             <div className="mb-6">
-                                <label htmlFor="default-input" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Input value</label>
+                                <label htmlFor="default-input" className="block mb-2 text-sm font-medium ">Input value</label>
                                 <input
                                     type="text"
                                     id="default-input"
@@ -71,8 +73,8 @@ function App() {
                             <ReactFlagsSelect
                                 selected={selectedSecond}
                                 onSelect={(code) => setSelectedSecond(code)}
-                                countries={["US", "GB", "FR", "DE", "IT", "UA"]}
-                                customLabels={{ US: "EN-US", GB: "EN-GB", FR: "FR", DE: "DE", IT: "IT", UA: "UAH" }}
+                                countries={["US", "SK", "UA"]}
+                                customLabels={{ US: "EN-US", SK: "EUR", UA: "UAH" }}
                                 placeholder="Select currency"
                             />
                             <div className="mt-8">
@@ -80,6 +82,7 @@ function App() {
                             </div>
                         </div>
                     </div>
+                    <div className="text-xs">date: {exchangeDate}</div>
                 </div>
             </div>
         </div>
